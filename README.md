@@ -10,9 +10,8 @@
 - `nginx_docker_image_env_data_creation_script.sh` - создает окружение для создания docker-file и образа;
 - `nginx_docker_compose_build_run.sh` - создает образ и запускает через docker-compose;
 - `test_that_nginx_works.sh` - тестирует процессинг запросов сервиса nginx.
-##### Ссылки для решения первой части первого задания (написать docker-file nginx):
-* [ссылка на директорию](https://github.com/kmavropulo2023/modern_devops_hw1/tree/a44842870a750fc9c5e80edc9f424b3bba71e2d8/nginx) с результатами решения первой части, включая dockerfile, вышеуказанные скрипты, скрипты инициализации базы данных, файл конфигурации базы данных, файл запуска docker compose и прочие файлы;
-* [пряммая ссылка](https://github.com/kmavropulo2023/modern_devops_hw1/blob/main/nginx/hw1_nginx/docker_env/kmavropulo_hw1_nginx_dockerfile) на docker file.
+##### Файлы для решения первой части первого задания (написать docker-file nginx):
+* в папке nginx - результаты решения первой части, включая dockerfile, вышеуказанные скрипты, скрипты инициализации базы данных, файл конфигурации базы данных, файл запуска docker compose и прочие файлы;
 
 **Детали решения первой части первого задания** (написать docker-file nginx) - ниже:  
 1. `nginx_docker_image_env_data_creation_script.sh` - создает окружение для создания docker-file и образа, перед запуском требуется поместить в папку пользователя на linux ОС, добавить права на запуск.
@@ -91,9 +90,8 @@ silicicarcher@instance-1:~$ ./test_that_nginx_works.sh 35051
 - `postgres_docker_compose_build_run.sh` - создает образ и запускает через docker-compose;
 - `test_that_postgres_works.sh` - тестирует процессинг запросов к контейнеру с БД postgres.
   
-##### Ссылки для решения второй части первого задания (написать docker-file postgres):
-* [ссылка на директорию](https://github.com/kmavropulo2023/modern_devops_hw1/tree/a44842870a750fc9c5e80edc9f424b3bba71e2d8/postgres) с результатами решения первой части, включая dockerfile, вышеуказанные скрипты, файл конфигурации nginx, файл запуска docker compose и прочие файлы;
-* [пряммая ссылка](https://github.com/kmavropulo2023/modern_devops_hw1/blob/a44842870a750fc9c5e80edc9f424b3bba71e2d8/postgres/hw1_postgres/docker_env/kmavropulo_hw1_postgres_dockerfile) на docker file.
+##### Файлы для решения второй части первого задания (написать docker-file postgres):
+* в папке postgres - результаты решения первой части, включая dockerfile, вышеуказанные скрипты, файл конфигурации nginx, файл запуска docker compose и прочие файлы;
 
 **Детали решения второй части первого задания** (написать docker-file postgres) - ниже:
 1. `postgres_docker_image_env_data_creation_script.sh` - создает окружение для создания docker-file и образа, перед запуском требуется поместить в папку пользователя на linux ОС, добавить права на запуск.
