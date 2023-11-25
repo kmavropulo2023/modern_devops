@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: ~/hw1_nginx/docker_env
+      dockerfile: kmavropulo_hw1_nginx_dockerfile
+      args:
+        USER_ID: 1000
+        GROUP_ID: 1001
+    image: kmavropulo_hw1_nginx_image
+    ports:
+      - '35051:80'
+    volumes:
+      - ~/hw1_nginx/docker_env/nginx.conf:/etc/nginx/nginx.conf
+      - ~/hw1_nginx/docker_env/logs:/var/log/nginx  # Добавленный том для логов nginx
+    container_name: kmavropulo_hw1_nginx_container
+    mem_limit: 500m  # Максимальный предел использования памяти контейнером
+    memswap_limit: 1g  # Максимальный предел использования swap-памяти
+    cpus: 0.5  # Ограничение использования CPU контейнером до 50%
+

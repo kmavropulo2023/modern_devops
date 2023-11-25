@@ -1,0 +1,25 @@
+FROM postgres:latest
+
+ARG USER_ID
+ARG GROUP_ID
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=mysecurepassword
+
+RUN echo "User ID: ${USER_ID}, Group ID: ${GROUP_ID}"
+
+RUN if [ "$(id -u postgres)" != "${USER_ID}" ]; then         usermod -u ${USER_ID} postgres;     fi &&     if [ "$(id -g postgres)" != "${GROUP_ID}" ]; then         groupmod -g ${GROUP_ID} postgres;     fi &&     echo "Изменение id группы и пользователя postgres - успех."
+
+RUN mkdir -p /docker-entrypoint-initdb.d &&     echo "Создание директории для скриптов инициализации - успех."
+
+COPY ./init-scripts/ /docker-entrypoint-initdb.d/
+RUN ls -l /docker-entrypoint-initdb.d/ &&     echo "Добавлены скрипты инициализации БД /docker-entrypoint-initdb.d - успех."
+
+COPY ./db_config/pg_hba.conf /var/lib/postgresql/data/pg_hba.conf
+RUN ls -l /var/lib/postgresql/data/pg_hba.conf &&     echo "Обновлен файл конфигурации БД pg_hba.conf - успех."
+
+RUN chown -R ${USER_ID}:${GROUP_ID} /var/lib/postgresql     /docker-entrypoint-initdb.d     /usr/lib/postgresql/     /usr/share/postgresql/     /etc/postgresql/ &&     chmod -R 700 /var/lib/postgresql/data &&     echo "Обновление прав собственности и разрешений - успех."
+
+EXPOSE 5432
+
+CMD ["postgres"]

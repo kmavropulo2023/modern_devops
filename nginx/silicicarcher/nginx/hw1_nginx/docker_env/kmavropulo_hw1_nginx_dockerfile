@@ -1,0 +1,5 @@
+FROM nginx:alpine
+
+EXPOSE $NGINX_PORT
+
+CMD ["nginx", "-g", "daemon off;"]

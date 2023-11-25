@@ -1,0 +1,19 @@
+version: '2.4'
+
+services:
+  postgres:
+    build:
+      context: ~/hw1_postgres/docker_env
+      dockerfile: kmavropulo_hw1_postgres_dockerfile
+      args:
+        USER_ID: 1000
+        GROUP_ID: 1001
+    image: kmavropulo_hw1_postgres_image
+    ports:
+      - '45051:5432'
+    volumes:
+      - ~/hw1_postgres/docker_env/postgres_db_data:/var/lib/postgresql/data
+    container_name: kmavropulo_hw1_postgres_container
+    mem_limit: 500m  # Максимальный предел использования памяти контейнером
+    memswap_limit: 1g  # Максимальный предел использования swap-памяти
+    cpus: 0.5  # Ограничение использования CPU контейнером до 50%
