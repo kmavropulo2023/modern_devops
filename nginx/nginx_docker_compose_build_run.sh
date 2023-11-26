@@ -29,6 +29,7 @@ services:
       args:
         USER_ID: ${USER_ID}
         GROUP_ID: ${GROUP_ID}
+        NGINX_PORT: ${NGINX_PORT}
     image: kmavropulo_hw1_nginx_image
     ports:
       - '${NGINX_EXPOSE_PORT}:${NGINX_PORT}'

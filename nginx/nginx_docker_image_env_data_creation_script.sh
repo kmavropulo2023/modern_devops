@@ -36,6 +36,19 @@ echo "Шаг 3. Права доступа установлены."
 cat > kmavropulo_hw1_nginx_dockerfile <<EOF
 FROM nginx:alpine
 
+ARG USER_ID
+ARG GROUP_ID
+ARG NGINX_PORT
+
+RUN apk --no-cache add shadow && \
+	if [ "\$(id -u nginx)" != "\${USER_ID}" ]; then \
+        usermod -u \${USER_ID} nginx; \
+    fi && \
+    if [ "\$(id -g nginx)" != "\${GROUP_ID}" ]; then \
+        groupmod -g \${GROUP_ID} nginx; \
+    fi && \
+    echo "Изменение id группы и пользователя nginx - успех."
+
 EXPOSE \$NGINX_PORT
 
 CMD ["nginx", "-g", "daemon off;"]
