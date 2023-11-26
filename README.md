@@ -41,19 +41,24 @@ Docker Compose version v2.23.3
 silicicarcher@instance-1:~$ ./nginx_docker_compose_build_run.sh 35051 80
 [+] Running 1/1
  ! nginx Warning                                                                    0.4s 
-[+] Building 0.4s (5/5) FINISHED                                          docker:default
- => [nginx internal] load build definition from kmavropulo_hw1_nginx_dockerfile     0.0s
- => => transferring dockerfile: 132B                                                0.0s
+[+] Building 1.4s (9/9) FINISHED                                          docker:default
  => [nginx internal] load .dockerignore                                             0.0s
  => => transferring context: 2B                                                     0.0s
- => [nginx internal] load metadata for docker.io/library/nginx:alpine               0.3s
- => CACHED [nginx 1/1] FROM docker.io/library/nginx:alpine@sha256:db353d0f0c479c91  0.0s
- => [nginx] exporting to image                                                      0.0s
- => => exporting layers                                                             0.0s
- => => writing image sha256:eef871c2edb2eee6f2ed44fad2628b04eda635216361069b5d3b5f  0.0s
+ => [nginx internal] load build definition from kmavropulo_hw1_nginx_dockerfile     0.0s
+ => => transferring dockerfile: 660B                                                0.0s
+ => [nginx internal] load metadata for docker.io/library/nginx:alpine               0.4s
+ => [nginx 1/4] FROM docker.io/library/nginx:alpine@sha256:db353d0f0c479c91bd15e01  0.0s
+ => [nginx internal] load build context                                             0.0s
+ => => transferring context: 1.44kB                                                 0.0s
+ => CACHED [nginx 2/4] RUN apk --no-cache add shadow &&  if [ "$(id -u nginx)" !=   0.0s
+ => [nginx 3/4] COPY ./nginx.conf /etc/nginx/nginx.conf                             0.0s
+ => [nginx 4/4] RUN ls -l /etc/nginx/nginx.conf &&     echo "Обновлен фа            0.6s
+ => [nginx] exporting to image                                                      0.1s
+ => => exporting layers                                                             0.1s
+ => => writing image sha256:cbacd235595ee7cb2eab5303bfc58e3f4d10b08da805eaa1beeddb  0.0s
  => => naming to docker.io/library/kmavropulo_hw1_nginx_image                       0.0s
 [+] Running 1/1
- ✔ Container kmavropulo_hw1_nginx_container  Started                                0.0s
+ ✔ Container kmavropulo_hw1_nginx_container  Started                                0.1s
 ```
 3. `test_that_nginx_works.sh` - тестирует запущенный контейнер образа nginx с помощью запросов к nginx сервису из host linux ОС через утилиту curl, перез запуском требуется поместить скрипт в папку пользователя на linux ОС, добавить права на запуск.
 Имеет детальное описание как в самом скрипте, так и по итогам запуска в логах, ниже пример вывода запуска скрипта и логи, отображающие этапы тестирования (выполнение GET и POST запросов и успешный вывод ответов и логов nginx, сторонние сервисы upstream не запускались):  
