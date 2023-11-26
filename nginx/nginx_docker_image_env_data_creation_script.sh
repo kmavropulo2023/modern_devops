@@ -49,6 +49,10 @@ RUN apk --no-cache add shadow && \
     fi && \
     echo "Изменение id группы и пользователя nginx - успех."
 
+COPY ./nginx.conf /etc/nginx/nginx.conf
+RUN ls -l /etc/nginx/nginx.conf && \
+    echo "Обновлен файл конфигурации nginx.conf - успех."
+
 EXPOSE \$NGINX_PORT
 
 CMD ["nginx", "-g", "daemon off;"]
